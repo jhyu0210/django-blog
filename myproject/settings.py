@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'posts' #newly add by py "manage.py startapp posts"
+    'posts', #newly add by py "manage.py startapp posts"
+    'users'
 ]
 
 MIDDLEWARE = [
