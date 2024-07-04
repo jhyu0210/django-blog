@@ -1,18 +1,28 @@
 {% extends 'layout.html' %}
+{% load widget_tweaks %}
 {% block title %}
   User Login
 {% endblock %}
 
 {% block content %}
-<h1>User Login</h1>
-<form class="form-with-validation" action="{% url 'users:login' %}" method="post">
-  {% csrf_token %}
-  {{form}}
+<h1 class="text-xl mb-4">User Login</h1>
+<form class="autocomplete-off mb-4 p-4 border border-teal-600 md:w-[60%] w-[80%] rounded-lg" action="{% url 'users:login' %}" method="post">
+ {% csrf_token %}
+  {% comment %} {{form}} {% endcomment %}
+  <div class='form-control'>
+    <label class="mb-2">Username</label>
+    {% render_field form.username class="input input-bordered" %}
+  </div>
+  <div class='form-control'>
+    <label class="mb-2">password</label>
+    {% render_field form.password class="input input-bordered" %}
+  </div>
+   
 
   {%if request.GET.next %}
     <input type="hidden" name="next" value="{{request.GET.next}}">
   {% endif %}
 
-  <button class="form-submit">Submit</button>
+  <button class="btn btn-primary mt-4 w-full">Submit</button>
 </form>
 {% endblock %}

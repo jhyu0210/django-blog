@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-import os
+# import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,13 +25,16 @@ SECRET_KEY = 'django-insecure-v=@gqb&=kmwa%^&b+sq(xqveb-tl)%#vabocajntk!2yp2rdgw
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['127.0.0.1','localhost']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    # 'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,11 +42,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'posts', #newly add by py "manage.py startapp posts"
-    'users'
+    'users',
+    'todos',
+    'widget_tweaks',
+     "template_partials",
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -118,14 +125,33 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+# STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+# STATIC_URL = 'static/'
+
+# STATICFILES_DIRS =[
+#     # BASE_DIR /'static'
+#     os.path.join(BASE_DIR,'static')
+# ]
+# MEDIA_URL = 'media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+# # MEDIA_ROOT = BASE_DIR,'media'
 STATIC_URL = 'static/'
-STATICFILES_DIRS =[
-    os.path.join(BASE_DIR,'static')
-]
 MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+STATIC_ROOT = BASE_DIR / 'assets'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+# py manage.py collectstatic
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
+
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
