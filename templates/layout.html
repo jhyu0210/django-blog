@@ -18,7 +18,7 @@
   <script src="https://unpkg.com/htmx.org@2.0.0" integrity="sha384-wS5l5IKJBvK6sPTKa2WZ1js3d947pvWXbPJ1OmWfEuxLgeHcEbjUUA5i9V5ZkpCw" crossorigin="anonymous"></script>
 </head>
 <body hx-headers='{"X-CSRFToken":"{{csrf_token}}"}'>
-  <nav class="flex justify-center space-x-8 items-center py-4">
+  <nav class="flex justify-center space-x-8 items-center py-4 bg-teal-700">
     <a href="/">
       <span role='img' aria-label="Home" title="Home">
         🏠
@@ -65,10 +65,11 @@
     {% endif %}
     {% comment %} <a href="/posts">📰</a> | {% endcomment %}
   </nav>
-    <main class="flex flex-col items-center">
-      {% block content %}
-      {% endblock %}
-    </main>
+  
+  <main class="px-12 bg-teal-600 min-h-screen">
+    {% block content %}
+    {% endblock %}
+  </main>
   
 </body>
 </html>

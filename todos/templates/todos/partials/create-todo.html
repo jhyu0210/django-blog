@@ -1,25 +1,22 @@
 {% load widget_tweaks %}
-<div id="create-todo">
+<div id="create-todo" class="px-4 py-4">
   <h1 class='text-xl'>Create New Todo</h1>
   
-  <form class="mb-4" 
-  hx-post="{% url 'todos:submit_todo' %}"
-  hx-target='#todo-table-body'
-  hx-swap="beforeend"
-  hx-on::after-request="this.reset()"
-  >
-  <!-- {% comment %} {{form.as_p}} {% endcomment %}
-    <div class='form-control'>
-      <label class="mb-2">Task Description</label>
-      {% render_field form.description class="input input-bordered" %}
-    </div>
-    <div class='form-control'>
-      <label class="mb-2">Is Completed</label>
-      {% render_field form.is_completed class="checkbox checkbox-success" %}
-    </div> -->
+  <form class="mb-4" hx-post="{% url 'todos:create_todo' %}">
+   
+    {% comment %} {{form.as_p}} {% endcomment %}
+      {% comment %} <div class='form-control'>
+        <label class="mb-2">Task Description</label>
+        {% render_field form.description class="input input-bordered" %}
+      </div>
+      <div class='form-control'>
+        <label class="mb-2">Is Completed</label>
+        {% render_field form.is_completed class="checkbox checkbox-success" %}
+      </div> {% endcomment %}
+
     {% include 'todos/partials/todo-form.html' %}
     
     
-    <button type="submit" class="mt-2 btn btn-primary">New todo</button>
+    <button type="submit" class="mt-2 btn btn-primary">Add todo</button>
   </form>
 </div>

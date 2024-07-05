@@ -1,11 +1,16 @@
 {% load widget_tweaks %}
 {% comment %} {{form.as_p}} {% endcomment %}
-<div class='form-control'>
-  <label class="mb-2">Task Description</label>
-  {% render_field form.description class="input input-bordered" %}
-</div>
-<div class='form-control'>
-  <label class="mb-2">Is Completed</label>
-  {% render_field form.is_completed class="checkbox checkbox-success" %}
+<div class=w-full>
+
+  <div class='form-control mb-2'>
+    {% comment %} <label class="mb-2">Task Description</label> {% endcomment %}
+    {{ form.description|add_label_class:"lable text-teal-800"}}
+    {% render_field form.description class="input input-bordered" %}
+  </div>
+  <div class='form-control'>
+    {% comment %} <label class="mb-2">Is Completed</label> {% endcomment %}
+    {{ form.is_completed|add_label_class:"lable text-teal-800"}}
+    {% render_field form.is_completed class="checkbox checkbox-success" %}
+  </div>
 </div>
 
