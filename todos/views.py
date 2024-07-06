@@ -35,11 +35,13 @@ def submit_todo(request):
 @login_required(login_url='/users/login')
 @require_POST
 def completed_todo(request, pk):
-  todo = get_object_or_404(Todo,pk=pk, user=request.user)
+  todo = get_object_or_404(Todo, pk=pk, user=request.user)
   todo.is_completed = True
+  print("saving todo ::",todo)
   todo.save()
-  context={'todo':todo}
-  return render(request, 'todos/todos.html#todoitem-partial',context)
+  print("saved todo ::",todo)
+  context= {'todo': todo}
+  return render(request, 'todos/partials/todos-container.html#todoitem-partial',context)
     
 
 @login_required(login_url='/users/login')
@@ -55,6 +57,19 @@ def delete_todo(request, pk):
 @login_required(login_url='/users/login')
 def update_todo(request, pk):
   todo = get_object_or_404(Todo, pk=pk, user=request.user)
+  if request.method == 'POST':
+    form = TodoForm(request.POST, instance=todo)
+    if form.is_valid():
+      todo = form.save()
+      context = {'message': "Todo was updated successfully!"}
+      return render(request, 'todos/partials/todo-success.html', context)
+    else:
+      context = {
+          'form': form,
+          'todo': todo,
+      }
+      response = render(request, 'todos/partials/update-todo.html', context)
+      return retarget(response, '#todos-block')
   context= {
     'form': TodoForm(instance=todo),
     'todo': todo

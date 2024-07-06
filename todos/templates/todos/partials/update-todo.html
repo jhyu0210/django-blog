@@ -1,25 +1,18 @@
 {% load widget_tweaks %}
 
 
-<div id="update-todo">
+<div>
   <h1 class='text-xl'>Update Todo</h1>
-<form class="mb-4" 
-    hx-post="{% url 'todos:update_todo' todo.pk %}"
-    hx-target='#todo-table-body'
-    hx-swap="beforeend"
-    hx-on::after-request="this.reset()"
-    >
-    <!-- {% comment %} {{form.as_p}} {% endcomment %}
-    <div class='form-control'>
-      <label class="mb-2">Task Description</label>
-      {% render_field form.description class="input input-bordered" %}
-    </div>
-    <div class='form-control'>
-      <label class="mb-2">Is Completed</label>
-      {% render_field form.is_completed class="checkbox checkbox-success" %}
-    </div> -->
-    {% include 'todos/partials/todo-form.html' %}
+  <form class="mb-4" 
+      hx-post="{% url 'todos:update_todo' todo.pk %}">
+
+      {% include 'todos/partials/todo-form.html' %}
 
 
-    <button type="submit" class="mt-2 btn btn-primary">Update Todo</button>
-  </form>
+      <button class="mt-2 btn btn-success">Update Todo</button>
+      <button class="mt-2 btn btn-success"
+        hx-get="{% url 'todos:todo_list' %}"
+        hx-target="#todos:block"
+        hx-push-url="/todos"
+      >cancel</button>
+    </form>
